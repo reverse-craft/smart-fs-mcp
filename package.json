@@ -1,0 +1,57 @@
+{
+  "name": "@reverse-craft/smart-fs-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for AI-assisted code processing - provides MCP tools for smart-fs core library",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "smart-fs-mcp": "./dist/server.js"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "start": "node dist/server.js",
+    "test": "vitest --run",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "javascript",
+    "reverse-engineering",
+    "code-processing",
+    "smart-fs"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reverse-craft/smart-fs-mcp.git"
+  },
+  "homepage": "https://github.com/reverse-craft/smart-fs-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/reverse-craft/smart-fs-mcp/issues"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "@reverse-craft/smart-fs": "^2.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.1",
+    "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "@reverse-craft/smart-fs": "^2.0.0",
+    "@types/node": "^22.15.29",
+    "esbuild": "^0.27.2",
+    "source-map-js": "^1.2.1",
+    "typescript": "^5.8.3",
+    "vitest": "^4.0.16"
+  }
+}
