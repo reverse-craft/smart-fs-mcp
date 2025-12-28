@@ -56,13 +56,12 @@ export const readCodeSmart = defineTool({
     end_line: z.number().int().min(1).describe('End line number (1-based)'),
     char_limit: z.number().int().min(50).default(300).describe('Character limit for string truncation'),
     max_line_chars: z.number().int().min(80).default(500).describe('Maximum characters per line'),
-    save_local: z.boolean().optional().default(false).describe('Save beautified file to the same directory as the original file'),
   },
   handler: async (params) => {
-    const { file_path, start_line, end_line, char_limit, max_line_chars, save_local } = params;
+    const { file_path, start_line, end_line, char_limit, max_line_chars } = params;
 
-    // Beautify the file and get source map
-    const beautifyResult = await ensureBeautified(file_path, { saveLocal: save_local });
+    // Beautify the file and get source map (always saves to same directory as original)
+    const beautifyResult = await ensureBeautified(file_path);
     const { code, rawMap, localPath, localMapPath, localSaveError } = beautifyResult;
 
     // Truncate long strings
@@ -98,17 +97,15 @@ export const readCodeSmart = defineTool({
     // Add header
     outputParts.push(formatHeader(file_path, effectiveStartLine, effectiveEndLine, totalLines));
 
-    // Add local save info if applicable
-    if (save_local) {
-      if (localPath) {
-        outputParts.push(`LOCAL: ${localPath}`);
-        if (localMapPath) {
-          outputParts.push(`MAP: ${localMapPath}`);
-        }
+    // Add local save info
+    if (localPath) {
+      outputParts.push(`LOCAL: ${localPath}`);
+      if (localMapPath) {
+        outputParts.push(`MAP: ${localMapPath}`);
       }
-      if (localSaveError) {
-        outputParts.push(`ERROR: ${localSaveError}`);
-      }
+    }
+    if (localSaveError) {
+      outputParts.push(`ERROR: ${localSaveError}`);
     }
 
     // Calculate max line number width for alignment
