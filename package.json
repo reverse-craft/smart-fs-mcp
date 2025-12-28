@@ -1,6 +1,6 @@
 {
   "name": "@reverse-craft/smart-fs-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for AI-assisted code processing - provides MCP tools for smart-fs core library",
   "type": "module",
   "main": "dist/server.js",
