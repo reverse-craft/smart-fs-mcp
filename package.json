@@ -40,14 +40,14 @@
     "node": ">=18"
   },
   "peerDependencies": {
-    "@reverse-craft/smart-fs": "^2.0.0"
+    "@reverse-craft/smart-fs": "file:../smart-fs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.25.1",
     "zod": "^4.2.1"
   },
   "devDependencies": {
-    "@reverse-craft/smart-fs": "^2.0.0",
+    "@reverse-craft/smart-fs": "file:../smart-fs",
     "@types/node": "^22.15.29",
     "esbuild": "^0.27.2",
     "source-map-js": "^1.2.1",
